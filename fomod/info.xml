@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fomod>
+  <Name>Scarred Steel</Name>
+  <Author>synthalorian</Author>
+  <Version>@VERSION@</Version>
+  <Website>https://github.com/Blackshield-Company/scarred-steel</Website>
+  <Description>Combat wears your weapon and armor. Repair them at a grindstone or a workbench. Player only. Base game, no SKSE. Early beta.</Description>
+  <Groups>
+    <element>Gameplay</element>
+  </Groups>
+</fomod>

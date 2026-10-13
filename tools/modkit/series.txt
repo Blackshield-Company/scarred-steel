@@ -1,0 +1,17 @@
+# The synthalorian Skyrim series: repo, release tag, archive name (load order as listed).
+blackshield-company   v0.1.2 BlackshieldCompany-0.1.2.zip
+bounties-of-oblivion  v0.1.2 BountiesOfOblivion-0.1.2.zip
+contract-hunter       v0.1.3 ContractHunter-0.1.3.zip
+steel-oath            v0.1.1 SteelOath-0.1.1.zip
+ember-smithing        v0.1.0 EmberSmithing-0.1.0.zip
+the-gray-mane-debt    v0.1.2 GrayManeDebt-0.1.2.zip
+blackshield-codex     v0.1.0 BlackshieldCodex-0.1.0.zip
+war-banners           v0.2.0 WarBanners-0.2.0.zip
+roadwarden            v0.1.1 Roadwarden-0.1.1.zip
+sellsword-roster      v0.1.0 SellswordRoster-0.1.0.zip
+the-turncoat-contract v0.1.1 TurncoatContract-0.1.1.zip
+the-ledger-of-ash     v0.1.1 LedgerOfAsh-0.1.1.zip
+oathbreakers-price    v0.1.1 OathbreakersPrice-0.1.1.zip
+champions-reforge     v0.1.1 ChampionsReforge-0.1.1.zip
+barrow-iron-pact      v0.1.1 BarrowIronPact-0.1.1.zip
+company-quartermaster v0.2.0 CompanyQuartermaster-0.2.0.zip
