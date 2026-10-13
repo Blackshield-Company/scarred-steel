@@ -2,25 +2,25 @@
 
 Nexus mod id: TBD (not assigned yet).
 
-Early beta: v0.1.0 passes every automated build check but nobody has playtested it in game yet. The page says this at the top. The exact upload-form values are in [NEXUS_FIELDS.md](NEXUS_FIELDS.md).
+Early beta: v0.2.0 passes every automated build check but nobody has playtested it in game yet. The page says this at the top. The exact upload-form values are in [NEXUS_FIELDS.md](NEXUS_FIELDS.md).
 
 ## Page settings
 
 - **Game:** Skyrim Special Edition
 - **Mod name:** Scarred Steel
-- **Version:** 0.1.0 (early beta)
+- **Version:** 0.2.0 (early beta)
 - **Category:** Gameplay
 - **Suggested tags:** Gameplay, Combat, Lore-Friendly, ESL, No SKSE, Scripted
 - **Requirements:** none. Ember Smithing is optional and is not a master.
 - **Permissions (suggested):** the source is on GitHub under MIT, so allow modification and conversions with credit, but not re-uploads of the archive itself.
-- **File to upload:** `ScarredSteel-0.1.0.zip` (FOMOD) as the main file, named "Scarred Steel".
+- **File to upload:** `ScarredSteel-0.2.0.zip` (FOMOD) as the main file, named "Scarred Steel".
 
 ## Description (paste into the BBCode editor)
 
 ```bbcode
 [center][size=6][b]SCARRED STEEL[/b][/size]
 
-[size=3][color=#e0a030][b]EARLY BETA (v0.1.0)[/b]: this version passes every automated build check but hasn't been playtested in game yet. Please report bugs in the Bugs tab or on GitHub, ideally with your Papyrus log.[/color][/size][/center]
+[size=3][color=#e0a030][b]EARLY BETA (v0.2.0)[/b]: this version passes every automated build check but hasn't been playtested in game yet. Please report bugs in the Bugs tab or on GitHub, ideally with your Papyrus log.[/color][/size][/center]
 
 [line]
 

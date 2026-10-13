@@ -1,4 +1,4 @@
-# Testing checklist (v0.1.0, early beta)
+# Testing checklist (v0.2.0, early beta)
 
 Automated (every `./build.sh`):
 
@@ -14,20 +14,21 @@ In game (not done yet; please help). The power is "Inspect Gear". Plugin FormIDs
 2. **Weapon wear**
    - [ ] Out of combat, swing a weapon. `SCS_WeaponWear` stays 0.
    - [ ] In combat, a right swing, a left swing, and a bow shot each add 1. `getglobalvalue SCS_WeaponWear`.
-   - [ ] At 60 / 150 / 260 the notice is "Your blade is nicked." / "dulled." / "blunted." The matching ability is the only weapon ability on you. Active effects show the penalty.
+   - [ ] At 60 / 150 / 260 the notice is "Your blade is nicked (Nicked)" / "Your blade is dulling (Dulled)" / "Your blade is blunted (Blunted)". The matching ability is the only weapon ability on you. Active effects show the penalty.
    - [ ] Further swings do not raise wear past 260. No second notice while the tier stays the same.
 3. **Armor wear**
    - [ ] With no cuirass, weapon hits do not raise `SCS_ArmorWear`.
    - [ ] With a cuirass, a weapon hit or an arrow adds 1. A power attack adds 2. Two hits inside 0.5 real seconds count as one (`SCS_HitCooldown`).
-   - [ ] At 40 / 100 / 180: "Your armor is scuffed." / "dented." / "battered." Armor rating drops by 15 / 40 / 80. Only one of those abilities is on you. Wear stops at 180.
+   - [ ] At 40 / 100 / 180: "Your armor is scuffed (Scuffed)" / "Your armor is dented (Dented)" / "Your armor is battered (Battered)". Armor rating drops by 15 / 40 / 80. Only one of those abilities is on you. Wear stops at 180.
 4. **Inspect Gear**
-   - [ ] The menu shows weapon wear, weapon tier, armor wear, armor tier, and both hardened flags, plus the tier names. The numbers match the globals.
+   - [ ] The menu shows weapon wear, weapon tier, armor wear, armor tier, both hardened flags, and wear hints (1 on, 0 off), plus the tier names. The numbers match the globals.
+   - [ ] Wear hints are on by default. "Turn wear hints off" sets `SCS_WearHints` to 0 and says "Wear hints off." The next tier cross is silent. "Turn wear hints on" sets it to 1 and says "Wear hints on." (`Show()` still counts a hidden button, so off is 1 and on is 2.) `set SCS_WearHints to 0` does the same as the off button. "Repaired." and "Hardened until the next repair." still appear when hints are off.
 5. **Repair**
    - [ ] Sit in a chair, or use a forge: no repair menu.
    - [ ] With weapon wear, use a grindstone: Repair / Ember repair / Not now. Not now changes nothing. Without Ember Smithing, Ember repair is absent and `SCS_EmberPresent` is 0.
    - [ ] Repair without 1 iron ingot and 1 leather strips: the notice, and wear unchanged.
-   - [ ] Smithing below 30: a tier 2 weapon (wear 150 or more, below 260) goes to 60 and the notice is "Your blade is nicked." Hardened clears.
-   - [ ] Smithing 30 or above: the counter goes to 0 and the notice is "Your blade is keen."
+   - [ ] Smithing below 30: a tier 2 weapon (wear 150 or more, below 260) goes to 60 and the notice is "Your blade is nicked (Nicked)". Hardened clears.
+   - [ ] Smithing 30 or above: the counter goes to 0 and the notice is "Your blade is keen again (Keen)".
    - [ ] Workbench, with armor wear: 1 iron ingot and 2 leather strips. Same skill rule. Tier 1 goes to 0.
 6. **Ember repair** (Ember Smithing installed)
    - [ ] `SCS_EmberPresent` is 1. The ember button is on both repair menus.

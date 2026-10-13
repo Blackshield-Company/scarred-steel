@@ -18,6 +18,7 @@ GlobalVariable Property SCS_ArmorTier1 Auto
 GlobalVariable Property SCS_ArmorTier2 Auto
 GlobalVariable Property SCS_ArmorTier3 Auto
 GlobalVariable Property SCS_FullRepairSkill Auto
+GlobalVariable Property SCS_WearHints Auto
 
 Spell Property SCS_PowerInspect Auto
 Spell Property SCS_AbWeaponNicked Auto
@@ -80,7 +81,14 @@ EndFunction
 ; Called by the lesser power.
 Function UsePower()
 	Sync(False)
-	SCS_MsgStatus.Show(SCS_WeaponWear.GetValue(), SCS_WeaponTierNow.GetValue(), SCS_ArmorWear.GetValue(), SCS_ArmorTierNow.GetValue(), SCS_WeaponHardened.GetValue(), SCS_ArmorHardened.GetValue())
+	Int choice = SCS_MsgStatus.Show(SCS_WeaponWear.GetValue(), SCS_WeaponTierNow.GetValue(), SCS_ArmorWear.GetValue(), SCS_ArmorTierNow.GetValue(), SCS_WeaponHardened.GetValue(), SCS_ArmorHardened.GetValue(), SCS_WearHints.GetValue())
+	If choice == 1
+		SCS_WearHints.SetValueInt(0)
+		Debug.Notification("Wear hints off.")
+	ElseIf choice == 2
+		SCS_WearHints.SetValueInt(1)
+		Debug.Notification("Wear hints on.")
+	EndIf
 EndFunction
 
 Function AddWeaponWear(Int amount)
@@ -194,7 +202,7 @@ Function DoRepair(Bool weapon, Bool ember)
 	If ember
 		Debug.Notification("Hardened until the next repair.")
 		Debug.Trace("[ScarredSteel] SCS_ ember repair")
-	ElseIf TierOf(weapon, WearValue(weapon)) == tierBefore
+	ElseIf TierOf(weapon, WearValue(weapon)) == tierBefore || SCS_WearHints.GetValueInt() == 0
 		Debug.Notification("Repaired.")
 		Debug.Trace("[ScarredSteel] SCS_ repair")
 	Else
@@ -355,25 +363,28 @@ Function ApplyArmorTier(Int tier)
 EndFunction
 
 Function NotifyTier(Bool weapon, Int tier)
+	If SCS_WearHints.GetValueInt() == 0
+		Return
+	EndIf
 	If weapon
 		If tier == 1
-			Debug.Notification("Your blade is nicked.")
+			Debug.Notification("Your blade is nicked (Nicked)")
 		ElseIf tier == 2
-			Debug.Notification("Your blade is dulled.")
+			Debug.Notification("Your blade is dulling (Dulled)")
 		ElseIf tier >= 3
-			Debug.Notification("Your blade is blunted.")
+			Debug.Notification("Your blade is blunted (Blunted)")
 		Else
-			Debug.Notification("Your blade is keen.")
+			Debug.Notification("Your blade is keen again (Keen)")
 		EndIf
 	Else
 		If tier == 1
-			Debug.Notification("Your armor is scuffed.")
+			Debug.Notification("Your armor is scuffed (Scuffed)")
 		ElseIf tier == 2
-			Debug.Notification("Your armor is dented.")
+			Debug.Notification("Your armor is dented (Dented)")
 		ElseIf tier >= 3
-			Debug.Notification("Your armor is battered.")
+			Debug.Notification("Your armor is battered (Battered)")
 		Else
-			Debug.Notification("Your armor is sound.")
+			Debug.Notification("Your armor is sound again (Sound)")
 		EndIf
 	EndIf
 EndFunction

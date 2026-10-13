@@ -2,7 +2,7 @@
 
 Combat wears your weapon and your armor. Repair a weapon at a grindstone and armor at a workbench. The items themselves are not changed.
 
-**Status: v0.1.0, early beta.** It passes every automated check in the build (Papyrus compile, plugin validation, byte-exact round trip, SEQ check, FOMOD schema) but has not been playtested in game yet. Expect rough edges and please report what you find. See [docs/TESTING.md](docs/TESTING.md).
+**Status: v0.2.0, early beta.** It passes every automated check in the build (Papyrus compile, plugin validation, byte-exact round trip, SEQ check, FOMOD schema) but has not been playtested in game yet. Expect rough edges and please report what you find. See [docs/TESTING.md](docs/TESTING.md).
 
 - Game: Skyrim Special Edition / Anniversary Edition 1.6.x (1.5.97 also works). Runs on Windows, and on Linux through Proton.
 - Requirements: just the base game. No SKSE, SkyUI, DLC or Creation Club content.
@@ -20,7 +20,7 @@ Wear is two counters on the player, weapon and armor. It is not stored on the it
 1. At the start you learn the lesser power **Inspect Gear** and see a short note once (`SCS_IntroShown`).
 2. **Weapon wear.** A `weaponSwing`, `weaponLeftSwing`, or `arrowRelease` animation adds 1, and only while you are in combat. The alias registers for those events on start, on load, and on a location change, because a graph reload can drop the registration.
 3. **Armor wear.** A hit whose source is a weapon, or that carries a projectile, adds 1 while you wear a body piece with `ArmorCuirass`. A power attack adds 2. Hits closer than `SCS_HitCooldown` (0.5) real seconds are ignored. The check uses `Utility.GetCurrentRealTime()`. There is no timer.
-4. **Tiers.** The counter is compared to console globals. Only the current tier's ability is on you. A notice appears only when the tier changes. Counters stop at the tier 3 threshold.
+4. **Tiers.** The counter is compared to console globals. Only the current tier's ability is on you. A notice appears only when the tier changes, and only if wear hints are on (`SCS_WearHints`). Counters stop at the tier 3 threshold.
 
 | Weapon tier | Name | At | Effect |
 |---|---|---|---|
@@ -48,7 +48,7 @@ The penalties are ability spells. Each is a Value Modifier flagged Detrimental a
 
 Missing materials show a notice. A normal repair clears Hardened for that kind. Ember Smithing is not a master. On start and on every load the quest does `Game.GetFormFromFile(0x803, "EmberSmithing.esp")` and sets `SCS_EmberPresent`.
 
-7. **Inspect Gear** shows weapon wear, weapon tier, armor wear, armor tier, and both hardened flags, with the tier names in the text.
+7. **Inspect Gear** shows weapon wear, weapon tier, armor wear, armor tier, both hardened flags, and whether wear hints are on, with the tier names in the text. It can turn wear hints off or on.
 
 No `RegisterForUpdate`. Tier changes happen on the swing, hit, repair, and load events only.
 
@@ -63,6 +63,7 @@ set SCS_ArmorTier2 to 100         ; Dented
 set SCS_ArmorTier3 to 180         ; Battered; also the cap
 set SCS_HitCooldown to 0.5        ; real seconds between counted armor hits
 set SCS_FullRepairSkill to 30     ; Smithing at or above this clears the counter
+set SCS_WearHints to 1            ; 1 shows tier notices, 0 hides them
 ```
 
 State, also console-adjustable, but the script overwrites these on the next event or load: `SCS_IntroShown`, `SCS_EmberPresent` (1 when Ember Smithing is loaded), `SCS_WeaponHardened`, `SCS_ArmorHardened`.

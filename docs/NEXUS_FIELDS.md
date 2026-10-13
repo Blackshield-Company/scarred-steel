@@ -6,7 +6,7 @@ Game: Skyrim Special Edition
 
 Mod name: Scarred Steel
 
-Version: 0.1.0 (early beta)
+Version: 0.2.0 (early beta)
 
 Category: Gameplay
 
@@ -14,9 +14,9 @@ Short summary (131 chars):
 Combat wears your weapon and armor in tiers. Repair at a grindstone or workbench. Player only. Base game, ESL, no SKSE. Early beta.
 
 Main file:
-- File: ScarredSteel-0.1.0.zip (FOMOD installer)
+- File: ScarredSteel-0.2.0.zip (FOMOD installer)
 - File name: Scarred Steel
-- File version: 0.1.0
+- File version: 0.2.0
 - File category: Main Files
 - File description: Early beta. Combat wears your weapon and armor in tiers. Repair at a grindstone or a workbench. Optional ember repair if Ember Smithing is installed. FOMOD installer with ScarredSteel.esp (ESL-flagged), compiled scripts, SEQ file, and optional Papyrus sources. Requires only Skyrim Special Edition / Anniversary Edition (1.5.97 or 1.6.x). No SKSE.
 
