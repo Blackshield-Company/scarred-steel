@@ -1,6 +1,6 @@
-# Design notes (v0.1.0, early beta)
+# Design notes (v0.2.0, early beta)
 
-## Records (37, FormIDs 0x800-0x824, ESL-flagged, Skyrim.esm only, no overrides)
+## Records (38, FormIDs 0x800-0x825, ESL-flagged, Skyrim.esm only, no overrides)
 
 Nothing is placed in the world. No new cells. No vanilla record is edited.
 
@@ -29,7 +29,8 @@ Nothing is placed in the world. No new cells. No vanilla record is edited.
 | `SCS_MsgRepairWeapon` / `Armor` | 820 / 821 | MESG | Repair, Ember repair, Not now. Ember button condition: `SCS_EmberPresent == 1`. Text args: wear, tier, full-repair skill (`%.0f`). |
 | `SCS_MsgNoMats` | 822 | MESG | Notice. Arg: leather strip count. |
 | `SCS_MsgNoEmberMats` | 823 | MESG | Notice. Arg: leather strip count. |
-| `SCS_MsgStatus` | 824 | MESG | Inspect Gear. Args: weapon wear, weapon tier, armor wear, armor tier, weapon hardened, armor hardened. Tier names are in the text. |
+| `SCS_MsgStatus` | 824 | MESG | Inspect Gear. Args: weapon wear, weapon tier, armor wear, armor tier, weapon hardened, armor hardened, wear hints. Buttons: Ok; "Turn wear hints off" when `SCS_WearHints == 1`; "Turn wear hints on" when `SCS_WearHints == 0`. Conditioned-out buttons still count in `Show()`. |
+| `SCS_WearHints` | 825 | GLOB | 1 (default) shows tier notices. 0 hides them. Toggled from Inspect Gear or the console. |
 
 Vanilla records used (none edited): `PlayerRef` (000014), `EquipType.Voice` (025BEE), `ArmorCuirass` (06C0EC), `CraftingSmithingSharpeningWheel` (088108), `CraftingSmithingArmorTable` (0ADB78), `IngotIron` (05ACE4), `LeatherStrips` (0800E4), `Charcoal` (033760), `FireSalts` (03AD5E). Looked up in `_ref/fk/all.tsv`.
 
@@ -50,7 +51,7 @@ The quest holds the counters, the hardened skip flags (script variables, saved w
 
 ## Tiers and repair
 
-Tier is the highest threshold the counter has reached. Tier 0 has no ability. On a tier change the script removes the other abilities of that kind, adds the new one, and shows one `Debug.Notification` ("Your blade is nicked." and the matching lines for the other names, including Keen and Sound when it returns to 0).
+Tier is the highest threshold the counter has reached. Tier 0 has no ability. On a tier change the script removes the other abilities of that kind, adds the new one, and, if `SCS_WearHints` is not 0, shows one `Debug.Notification` ("Your blade is nicked (Nicked)", "dulling (Dulled)", "blunted (Blunted)", "keen again (Keen)", and the armor lines "scuffed (Scuffed)", "dented (Dented)", "battered (Battered)", "sound again (Sound)"). Repair notices are not gated.
 
 A normal repair spends 1 iron ingot and 1 leather strips (weapon) or 2 leather strips (armor). If `GetActorValue("Smithing") >= SCS_FullRepairSkill` the counter becomes 0. Otherwise it is set to the threshold below the current tier (tier 3 → tier 2 threshold, tier 2 → tier 1 threshold, tier 1 or 0 → 0). Hardened is cleared.
 

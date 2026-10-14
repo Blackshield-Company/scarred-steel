@@ -45,6 +45,7 @@ internal sealed class Builder
         var gArmorT3 = Global("SCS_ArmorTier3", 180);
         var gCooldown = Global("SCS_HitCooldown", 0.5f);
         var gSkill = Global("SCS_FullRepairSkill", 30);
+        var gWearHints = Global("SCS_WearHints", 1);
 
         var effNicked = Penalty("SCS_EffWeaponNicked", "Nicked", ActorValue.AttackDamageMult, "Weapon attacks do 5% less damage.");
         var effDulled = Penalty("SCS_EffWeaponDulled", "Dulled", ActorValue.AttackDamageMult, "Weapon attacks do 12% less damage.");
@@ -92,7 +93,10 @@ internal sealed class Builder
         var msgRepairA = Msg("SCS_MsgRepairArmor", Texts.RepairArmor, Btn("Repair"), EmberBtn(gEmber), Btn("Not now"));
         var msgNoMats = Notice("SCS_MsgNoMats", Texts.NoMats);
         var msgNoEmber = Notice("SCS_MsgNoEmberMats", Texts.NoEmberMats);
-        var msgStatus = Msg("SCS_MsgStatus", Texts.Status, Btn("Ok"));
+        var msgStatus = Msg("SCS_MsgStatus", Texts.Status,
+            Btn("Ok"),
+            GlobalBtn("Turn wear hints off", gWearHints, 1),
+            GlobalBtn("Turn wear hints on", gWearHints, 0));
 
         var quest = Add(new Quest(qMain, R)
         {
@@ -119,6 +123,7 @@ internal sealed class Builder
                 Vmad.Obj("SCS_WeaponTier1", gWeaponT1), Vmad.Obj("SCS_WeaponTier2", gWeaponT2), Vmad.Obj("SCS_WeaponTier3", gWeaponT3),
                 Vmad.Obj("SCS_ArmorTier1", gArmorT1), Vmad.Obj("SCS_ArmorTier2", gArmorT2), Vmad.Obj("SCS_ArmorTier3", gArmorT3),
                 Vmad.Obj("SCS_FullRepairSkill", gSkill),
+                Vmad.Obj("SCS_WearHints", gWearHints),
                 Vmad.Obj("SCS_PowerInspect", power.FormKey),
                 Vmad.Obj("SCS_AbWeaponNicked", abNicked), Vmad.Obj("SCS_AbWeaponDulled", abDulled), Vmad.Obj("SCS_AbWeaponBlunted", abBlunted),
                 Vmad.Obj("SCS_AbArmorScuffed", abScuffed), Vmad.Obj("SCS_AbArmorDented", abDented), Vmad.Obj("SCS_AbArmorBattered", abBattered),
@@ -136,10 +141,12 @@ internal sealed class Builder
                 Vmad.Obj("SCS_ArmorWear", gArmorWear)));
     }
 
-    private MessageButton EmberBtn(FormKey ember)
+    private MessageButton EmberBtn(FormKey ember) => GlobalBtn("Ember repair", ember, 1);
+
+    private static MessageButton GlobalBtn(string text, FormKey global, float value)
     {
-        var b = Btn("Ember repair");
-        b.Conditions.Add(Cond.Global(ember, CompareOperator.EqualTo, 1));
+        var b = Btn(text);
+        b.Conditions.Add(Cond.Global(global, CompareOperator.EqualTo, value));
         return b;
     }
 

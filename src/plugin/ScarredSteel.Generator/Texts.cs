@@ -28,5 +28,6 @@ internal static class Texts
         "Hardened: weapon %.0f, armor %.0f.\n\n" +
         "Weapon: 0 Keen, 1 Nicked, 2 Dulled, 3 Blunted.\n" +
         "Armor: 0 Sound, 1 Scuffed, 2 Dented, 3 Battered.\n" +
-        "Hardened is 1 after an ember repair, until the next repair of that kind.";
+        "Hardened is 1 after an ember repair, until the next repair of that kind.\n" +
+        "Wear hints: %.0f (1 on, 0 off).";
 }
