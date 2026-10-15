@@ -1,3 +1,5 @@
+![scarred-steel](.github/preview.png)
+
 # Scarred Steel
 
 Combat wears your weapon and your armor. Repair a weapon at a grindstone and armor at a workbench. The items themselves are not changed.
