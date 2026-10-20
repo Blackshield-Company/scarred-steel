@@ -32,7 +32,7 @@ while read -r repo tag zip; do
   dest="$CACHE/$zip"
   if [[ ! -s "$dest" ]]; then
     echo "[compat] downloading $repo $tag $zip"
-    curl -fsSL -o "$dest.part" "https://github.com/Blackshield-Company/$repo/releases/download/$tag/$zip"
+    curl -fsSL -o "$dest.part" "https://github.com/synthalorian/$repo/releases/download/$tag/$zip"
     mv "$dest.part" "$dest"
   fi
   ZIPS+=("$dest")
