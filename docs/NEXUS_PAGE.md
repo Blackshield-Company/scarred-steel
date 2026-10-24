@@ -64,7 +64,7 @@ set SCS_FullRepairSkill to 30
 [size=4][b]The series[/b][/size]
 Part of the Blackshield series. It does not edit Ember Smithing's items, and it does not replace Company Quartermaster's follower refit.
 
-[url=https://github.com/synthalorian/scarred-steel]Source and issues[/url].
+[url=https://github.com/Blackshield-Company/scarred-steel]Source and issues[/url].
 
 Donations are optional. Nothing is gated.
 [url=https://github.com/sponsors/synthalorian]GitHub Sponsors[/url] · [url=https://ko-fi.com/synthalorian]Ko-fi[/url]
